@@ -64,7 +64,7 @@ function setup() {
   
   console.log("Hello" + 5);
   
-  trex.setCollider("rectangle",0,0,400,trex.height);
+  trex.setCollider("rectangle",125,0,280,trex.height);
   trex.debug = true
   
   score = 0;
@@ -85,7 +85,8 @@ function draw() {
     gameOver.visible = false;
     restart.visible = false;
     
-    ground.velocityX = -(4 + 3* score/100)
+    //ground.velocityX = -(4 + 3* score/100)
+    ground.velocityX = -5
     //scoring
     score = score + Math.round(frameCount/60);
     
@@ -99,7 +100,7 @@ function draw() {
     
     //jump when the space key is pressed
     if(keyDown("space")&& trex.y >= 100) {
-        trex.velocityY = -12;
+        trex.velocityY = -15;
         jumpSound.play();
     }
     
@@ -147,9 +148,10 @@ function draw() {
 }
 
 function spawnObstacles(){
- if (frameCount % 60 === 0){
-   var obstacle = createSprite(400,165,10,40);
-   obstacle.velocityX = -(6 + score/100);
+ if (frameCount % 80 === 0){
+   var obstacle = createSprite(500,165,10,40);
+  // obstacle.velocityX = -(6 + score/100);
+     obstacle.velocityX = -6
    
     //generate random obstacles
     var rand = Math.round(random(1,6));
@@ -170,7 +172,7 @@ function spawnObstacles(){
     }
    
     //assign scale and lifetime to the obstacle           
-    obstacle.scale = 0.5;
+    obstacle.scale = 0.45;
     obstacle.lifetime = 300;
    
    //add each obstacle to the group
